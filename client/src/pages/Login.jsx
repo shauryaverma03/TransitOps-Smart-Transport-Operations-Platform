@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import api from '../utils/axios';
 import { AuthContext } from '../context/AuthContext';
-import { Truck, Shield, ArrowRight, Zap } from 'lucide-react';
+import { Truck, Shield, ArrowRight, Zap, ArrowLeft } from 'lucide-react';
 
 const ROLES = ['Fleet Manager', 'Dispatcher', 'Safety Officer', 'Financial Analyst'];
 
@@ -58,6 +58,10 @@ const Login = () => {
       <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-status-inshop/5 blur-[100px] rounded-full pointer-events-none" />
       
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
+        <Link to="/" className="flex items-center justify-center text-sm font-medium text-text-muted hover:text-primary transition-colors mb-8 group">
+          <ArrowLeft size={14} className="mr-1.5 group-hover:-translate-x-1 transition-transform" />
+          Back to Home
+        </Link>
         <div className="flex justify-center">
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary-hover flex items-center justify-center shadow-xl shadow-primary/20">
             <Truck size={28} className="text-background" />

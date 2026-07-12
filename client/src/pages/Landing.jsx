@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Network, Cpu, ShieldAlert, BarChart3, ChevronRight, Globe, Lock } from 'lucide-react';
+import { Network, Cpu, ShieldAlert, BarChart3, ChevronRight, Globe, Lock, Truck, Users, Map, TrendingUp, Activity, Fuel, Wrench, ArrowUpRight } from 'lucide-react';
 
 const Landing = () => {
   const { scrollYProgress } = useScroll();
@@ -22,13 +22,13 @@ const Landing = () => {
     <div className="min-h-screen bg-background text-text-primary selection:bg-primary selection:text-background overflow-hidden font-sans">
       
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-surface-border">
+      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-surface-border/50">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-hover flex items-center justify-center">
-              <Network className="text-background" size={20} />
+          <div className="flex items-center space-x-2.5">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-primary-hover flex items-center justify-center shadow-lg shadow-primary/25">
+              <Truck className="text-background" size={18} />
             </div>
-            <span className="font-bold text-lg tracking-wide">TransitOps</span>
+            <span className="font-bold text-lg tracking-tight">TransitOps</span>
           </div>
           
           <div className="hidden md:flex space-x-8 text-sm font-medium text-text-secondary">
@@ -38,10 +38,10 @@ const Landing = () => {
           </div>
 
           <div className="flex items-center space-x-4">
-            <Link to="/login" className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">
-              Request Console Access
+            <Link to="/login" className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors hidden sm:block">
+              Sign In
             </Link>
-            <Link to="/login" className="px-4 py-2 bg-primary text-background text-sm font-medium rounded-md hover:bg-primary-hover transition-colors shadow-lg shadow-primary/20">
+            <Link to="/login" className="px-5 py-2 bg-primary text-background text-sm font-semibold rounded-lg hover:bg-primary-hover transition-all duration-200 shadow-lg shadow-primary/25">
               Launch Console
             </Link>
           </div>
@@ -49,20 +49,21 @@ const Landing = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-40 pb-20 px-6 flex flex-col items-center text-center">
-        {/* Background ambient glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
+      <section className="relative pt-40 pb-24 px-6 flex flex-col items-center text-center">
+        {/* Background ambient glows */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/8 blur-[150px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-status-inshop/5 blur-[120px] rounded-full pointer-events-none" />
         
         <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="relative z-10 max-w-4xl flex flex-col items-center">
           
-          <motion.div variants={fadeUp} className="px-4 py-1.5 rounded-full border border-surface-border bg-surface/50 text-xs font-medium text-primary mb-8 flex items-center space-x-2 backdrop-blur-sm">
+          <motion.div variants={fadeUp} className="px-4 py-1.5 rounded-full border border-surface-border bg-surface/50 text-xs font-semibold text-primary mb-8 flex items-center space-x-2 backdrop-blur-sm">
             <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span>Intelligence V2.4 Powered by Neural Routing</span>
+            <span>Intelligence V2.4 · Neural Routing Engine Active</span>
           </motion.div>
 
-          <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6">
+          <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
             Intelligence-Driven <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-hover">Fleet Orchestration</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#c4d8ff] to-primary-hover">Fleet Orchestration</span>
           </motion.h1>
 
           <motion.p variants={fadeUp} className="text-lg md:text-xl text-text-secondary max-w-2xl mb-10 leading-relaxed">
@@ -71,13 +72,31 @@ const Landing = () => {
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <Link to="/login" className="w-full sm:w-auto px-8 py-3 bg-primary text-background font-medium rounded-lg hover:bg-primary-hover transition-colors flex items-center justify-center shadow-xl shadow-primary/20">
+            <Link to="/login" className="w-full sm:w-auto px-8 py-3.5 bg-primary text-background font-semibold rounded-xl hover:bg-primary-hover transition-all duration-200 flex items-center justify-center shadow-xl shadow-primary/25 text-sm">
               Launch Command Console
+              <ArrowUpRight size={16} className="ml-2" />
             </Link>
-            <Link to="/login" className="w-full sm:w-auto px-8 py-3 bg-surface border border-surface-border text-text-primary font-medium rounded-lg hover:bg-surface-border transition-colors flex items-center justify-center">
-              Technical Specifications
-            </Link>
+            <a href="#enterprise" className="w-full sm:w-auto px-8 py-3.5 bg-surface/80 border border-surface-border text-text-primary font-semibold rounded-xl hover:bg-surface-border transition-all duration-200 flex items-center justify-center text-sm backdrop-blur-sm">
+              Explore Platform
+            </a>
           </motion.div>
+        </motion.div>
+
+        {/* Hero Stats Bar */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.6 }}
+          className="relative z-10 mt-20 max-w-3xl w-full grid grid-cols-3 gap-4"
+        >
+          {[
+            { label: 'VEHICLES TRACKED', value: '12,400+', color: 'text-primary' },
+            { label: 'OPERATIONAL UPTIME', value: '99.97%', color: 'text-status-available' },
+            { label: 'COST REDUCTION', value: '34%', color: 'text-status-inshop' },
+          ].map((stat, i) => (
+            <div key={i} className="bg-surface/60 backdrop-blur-sm border border-surface-border rounded-xl p-4 text-center">
+              <div className={`text-2xl md:text-3xl font-bold ${stat.color} mb-1`}>{stat.value}</div>
+              <div className="text-[10px] font-mono font-semibold text-text-muted tracking-wider">{stat.label}</div>
+            </div>
+          ))}
         </motion.div>
       </section>
 
@@ -88,8 +107,9 @@ const Landing = () => {
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
             className="text-center mb-16"
           >
+            <span className="inline-block px-3 py-1 rounded-full border border-surface-border bg-surface/50 text-[10px] font-mono font-semibold text-primary tracking-wider mb-4">SYSTEM ARCHITECTURE</span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Core Intelligence Nodes</h2>
-            <p className="text-text-secondary">Precision metrics and systems engineered for enterprise, scale fleet visibility.</p>
+            <p className="text-text-secondary max-w-lg mx-auto">Precision metrics and systems engineered for enterprise-scale fleet visibility.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -97,16 +117,16 @@ const Landing = () => {
             <motion.div 
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}
               whileHover={{ y: -5, scale: 1.02 }}
-              className="bg-surface border border-surface-border rounded-xl p-6 relative group overflow-hidden shadow-2xl"
+              className="bg-surface/80 backdrop-blur-md border border-surface-border rounded-2xl p-6 relative group overflow-hidden shadow-2xl"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="w-12 h-12 bg-surface-border rounded-lg flex items-center justify-center mb-6 text-text-secondary group-hover:text-primary transition-colors">
+              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 text-primary group-hover:bg-primary/20 transition-colors">
                 <Globe size={24} />
               </div>
               <h3 className="text-xl font-bold mb-2">Neural Telemetry</h3>
               <p className="text-text-secondary text-sm mb-8 leading-relaxed">Continuous sync coordinates across global assets with multi-constellation GPS fallback.</p>
               <div className="flex justify-between items-end border-t border-surface-border pt-4 mt-auto">
-                <span className="text-xs font-mono text-text-muted">SIGNAL INTEGRITY</span>
+                <span className="text-[10px] font-mono font-semibold text-text-muted tracking-wider">SIGNAL INTEGRITY</span>
                 <span className="text-sm font-mono font-bold text-text-primary">99.999%</span>
               </div>
             </motion.div>
@@ -115,17 +135,17 @@ const Landing = () => {
             <motion.div 
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }}
               whileHover={{ y: -5, scale: 1.02 }}
-              className="bg-surface border border-surface-border rounded-xl p-6 relative group overflow-hidden shadow-2xl"
+              className="bg-surface/80 backdrop-blur-md border border-surface-border rounded-2xl p-6 relative group overflow-hidden shadow-2xl"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#81c995]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="w-12 h-12 bg-surface-border rounded-lg flex items-center justify-center mb-6 text-text-secondary group-hover:text-[#81c995] transition-colors">
+              <div className="absolute inset-0 bg-gradient-to-br from-status-available/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="w-12 h-12 bg-status-available/10 rounded-xl flex items-center justify-center mb-6 text-status-available group-hover:bg-status-available/20 transition-colors">
                 <Cpu size={24} />
               </div>
               <h3 className="text-xl font-bold mb-2">Automated Dispatch</h3>
               <p className="text-text-secondary text-sm mb-8 leading-relaxed">Autonomous route matching utilizing probabilistic models for system-wide efficiency.</p>
               <div className="flex justify-between items-end border-t border-surface-border pt-4 mt-auto">
-                <span className="text-xs font-mono text-text-muted">ALLOCATION DELTA</span>
-                <span className="text-sm font-mono font-bold text-[#81c995]">+38% SHIFT</span>
+                <span className="text-[10px] font-mono font-semibold text-text-muted tracking-wider">ALLOCATION DELTA</span>
+                <span className="text-sm font-mono font-bold text-status-available">+38% SHIFT</span>
               </div>
             </motion.div>
 
@@ -133,17 +153,17 @@ const Landing = () => {
             <motion.div 
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}
               whileHover={{ y: -5, scale: 1.02 }}
-              className="bg-surface border border-surface-border rounded-xl p-6 relative group overflow-hidden shadow-2xl"
+              className="bg-surface/80 backdrop-blur-md border border-surface-border rounded-2xl p-6 relative group overflow-hidden shadow-2xl"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#ffb786]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="w-12 h-12 bg-surface-border rounded-lg flex items-center justify-center mb-6 text-text-secondary group-hover:text-[#ffb786] transition-colors">
+              <div className="absolute inset-0 bg-gradient-to-br from-status-inshop/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="w-12 h-12 bg-status-inshop/10 rounded-xl flex items-center justify-center mb-6 text-status-inshop group-hover:bg-status-inshop/20 transition-colors">
                 <ShieldAlert size={24} />
               </div>
               <h3 className="text-xl font-bold mb-2">Predictive Health</h3>
               <p className="text-text-secondary text-sm mb-8 leading-relaxed">AI-driven component analysis identifying mechanical anomalies before failure occurs.</p>
               <div className="flex justify-between items-end border-t border-surface-border pt-4 mt-auto">
-                <span className="text-xs font-mono text-text-muted">UPTIME FORECAST</span>
-                <span className="text-sm font-mono font-bold text-[#ffb786]">+420 HRS</span>
+                <span className="text-[10px] font-mono font-semibold text-text-muted tracking-wider">UPTIME FORECAST</span>
+                <span className="text-sm font-mono font-bold text-status-inshop">+420 HRS</span>
               </div>
             </motion.div>
 
@@ -151,13 +171,14 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Enterprise Hub (Zig Zag) */}
+      {/* Enterprise Hub Section */}
       <section id="enterprise" className="py-24 px-6">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
           <motion.div 
             initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
             className="lg:w-1/2"
           >
+            <span className="inline-block px-3 py-1 rounded-full border border-surface-border bg-surface/50 text-[10px] font-mono font-semibold text-primary tracking-wider mb-4">COMMAND CENTER</span>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Enterprise Hub</h2>
             <p className="text-lg text-text-secondary mb-8 leading-relaxed">
               The ultimate high-contrast interface designed for rapid decision making. 
@@ -165,16 +186,22 @@ const Landing = () => {
             </p>
             <ul className="space-y-4 mb-8">
               <li className="flex items-center text-text-primary">
-                <div className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center mr-3">
+                <div className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center mr-3 flex-shrink-0">
                   <CheckIcon />
                 </div>
                 Real-time data visualization engine
               </li>
               <li className="flex items-center text-text-primary">
-                <div className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center mr-3">
+                <div className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center mr-3 flex-shrink-0">
                   <CheckIcon />
                 </div>
                 Multi-region global fleet mapping
+              </li>
+              <li className="flex items-center text-text-primary">
+                <div className="w-6 h-6 rounded-full bg-status-available/20 text-status-available flex items-center justify-center mr-3 flex-shrink-0">
+                  <CheckIcon />
+                </div>
+                Role-based access with 4 operator tiers
               </li>
             </ul>
           </motion.div>
@@ -184,83 +211,144 @@ const Landing = () => {
             style={{ perspective: '1000px' }}
             className="lg:w-1/2 relative"
           >
-            {/* 3D Dashboard Mockup Effect */}
-            <div className="absolute inset-0 bg-primary/20 blur-[80px] rounded-full pointer-events-none transform translate-y-10" />
-            <div className="relative bg-surface rounded-xl border border-surface-border shadow-2xl overflow-hidden transform-gpu hover:scale-[1.02] hover:rotate-1 transition-transform duration-500">
+            <div className="absolute inset-0 bg-primary/15 blur-[80px] rounded-full pointer-events-none transform translate-y-10" />
+            <div className="relative bg-surface rounded-2xl border border-surface-border shadow-2xl overflow-hidden transform-gpu hover:scale-[1.02] hover:rotate-1 transition-transform duration-500">
               
-              {/* Mockup Topbar */}
-              <div className="h-8 bg-background border-b border-surface-border flex items-center px-4 space-x-2">
-                <div className="w-3 h-3 rounded-full bg-[#ffb4ab]" />
-                <div className="w-3 h-3 rounded-full bg-[#ffb786]" />
-                <div className="w-3 h-3 rounded-full bg-[#81c995]" />
+              {/* Window Chrome */}
+              <div className="h-10 bg-background border-b border-surface-border flex items-center px-4 space-x-2">
+                <div className="w-3 h-3 rounded-full bg-error/80" />
+                <div className="w-3 h-3 rounded-full bg-status-inshop/80" />
+                <div className="w-3 h-3 rounded-full bg-status-available/80" />
+                <span className="ml-4 text-[10px] font-mono text-text-muted">transitops.io/dashboard</span>
               </div>
               
-              {/* Mockup Body (Abstracted Dashboard) */}
-              <div className="p-6 grid grid-cols-3 gap-4">
-                <div className="col-span-1 space-y-4">
-                  <div className="h-24 bg-background rounded-lg border border-surface-border p-3 flex flex-col justify-end">
-                    <div className="w-1/2 h-3 bg-surface-border rounded mb-2" />
-                    <div className="w-3/4 h-6 bg-primary/20 rounded" />
-                  </div>
-                  <div className="h-32 bg-background rounded-lg border border-surface-border p-3">
-                    <div className="w-full h-full border-b border-l border-surface-border flex items-end justify-between px-2">
-                      <div className="w-3 bg-status-available h-[40%]" />
-                      <div className="w-3 bg-status-available h-[60%]" />
-                      <div className="w-3 bg-status-available h-[30%]" />
-                      <div className="w-3 bg-primary h-[80%]" />
-                      <div className="w-3 bg-primary h-[100%]" />
+              {/* Realistic Dashboard Content */}
+              <div className="p-5">
+                {/* KPI Row */}
+                <div className="grid grid-cols-4 gap-3 mb-4">
+                  {[
+                    { label: 'Active Fleet', val: '847', icon: Truck, color: 'text-primary', bg: 'bg-primary/10' },
+                    { label: 'On Route', val: '312', icon: Activity, color: 'text-status-available', bg: 'bg-status-available/10' },
+                    { label: 'In Maint.', val: '23', icon: Wrench, color: 'text-status-inshop', bg: 'bg-status-inshop/10' },
+                    { label: 'Utilization', val: '94%', icon: TrendingUp, color: 'text-primary', bg: 'bg-primary/10' },
+                  ].map((kpi, i) => (
+                    <div key={i} className="bg-background rounded-lg border border-surface-border p-3">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[8px] font-mono text-text-muted uppercase">{kpi.label}</span>
+                        <div className={`w-5 h-5 rounded ${kpi.bg} flex items-center justify-center`}>
+                          <kpi.icon size={10} className={kpi.color} />
+                        </div>
+                      </div>
+                      <div className={`text-lg font-bold ${kpi.color}`}>{kpi.val}</div>
                     </div>
+                  ))}
+                </div>
+                
+                {/* Chart area */}
+                <div className="bg-background rounded-lg border border-surface-border p-4 mb-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[9px] font-mono text-text-muted uppercase tracking-wider">Revenue · Last 7 Months</span>
+                    <span className="text-[9px] font-mono text-status-available">+12.4%</span>
+                  </div>
+                  <div className="flex items-end justify-between h-24 gap-2">
+                    {[35, 52, 44, 68, 58, 82, 74].map((h, i) => (
+                      <div key={i} className="flex-1 flex flex-col items-center">
+                        <div 
+                          className={`w-full rounded-t-sm ${i === 5 ? 'bg-primary' : 'bg-primary/30'}`}
+                          style={{ height: `${h}%` }}
+                        />
+                        <span className="text-[7px] font-mono text-text-muted mt-1">{['J','F','M','A','M','J','J'][i]}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-                <div className="col-span-2 space-y-4">
-                  <div className="h-8 bg-background rounded border border-surface-border flex items-center px-3">
-                    <div className="w-1/3 h-2 bg-surface-border rounded" />
-                  </div>
-                  <div className="h-48 bg-background rounded-lg border border-surface-border p-4">
-                    <div className="space-y-3">
-                      <div className="w-full h-6 bg-surface-border/50 rounded" />
-                      <div className="w-full h-6 bg-surface-border/50 rounded" />
-                      <div className="w-full h-6 bg-surface-border/50 rounded" />
-                      <div className="w-full h-6 bg-surface-border/50 rounded" />
-                    </div>
-                  </div>
-                </div>
-              </div>
 
+                {/* Mini table */}
+                <div className="bg-background rounded-lg border border-surface-border overflow-hidden">
+                  <div className="px-3 py-2 border-b border-surface-border">
+                    <span className="text-[9px] font-mono text-text-muted uppercase tracking-wider">Recent Dispatches</span>
+                  </div>
+                  {[
+                    { id: 'TRP-4821', route: 'Mumbai → Delhi', status: 'Dispatched', color: 'text-status-ontrip bg-status-ontrip/15' },
+                    { id: 'TRP-4820', route: 'LA → Chicago', status: 'Completed', color: 'text-status-available bg-status-available/15' },
+                    { id: 'TRP-4819', route: 'Berlin → Paris', status: 'Dispatched', color: 'text-status-ontrip bg-status-ontrip/15' },
+                  ].map((trip, i) => (
+                    <div key={i} className="px-3 py-2 flex items-center justify-between border-b border-surface-border/50 last:border-0">
+                      <div className="flex items-center space-x-3">
+                        <span className="text-[9px] font-mono font-semibold text-primary">{trip.id}</span>
+                        <span className="text-[9px] text-text-secondary">{trip.route}</span>
+                      </div>
+                      <span className={`text-[8px] font-semibold px-2 py-0.5 rounded-full ${trip.color}`}>{trip.status}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Asset Registry (Zig Zag Reverse) */}
-      <section className="py-24 px-6 bg-surface/30">
+      {/* Asset Registry Section */}
+      <section className="py-24 px-6 bg-surface/20">
         <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-16">
           <motion.div 
             initial={{ opacity: 0, x: -50, rotateY: -10 }} whileInView={{ opacity: 1, x: 0, rotateY: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
             style={{ perspective: '1000px' }}
             className="lg:w-1/2 relative"
           >
-             {/* 3D Laptop Mockup Effect */}
-             <div className="absolute inset-0 bg-primary/10 blur-[80px] rounded-full pointer-events-none transform translate-y-10" />
-            <div className="relative bg-[#0d1015] rounded-xl border-4 border-[#272a31] shadow-2xl overflow-hidden transform-gpu hover:scale-[1.02] hover:-rotate-1 transition-transform duration-500 pb-12">
-              {/* Screen Content */}
-              <div className="p-4 border-b border-surface-border flex justify-between">
-                <div className="w-1/4 h-4 bg-surface-border rounded" />
-                <div className="flex space-x-2"><div className="w-4 h-4 bg-primary/20 rounded" /><div className="w-4 h-4 bg-primary/20 rounded" /></div>
+            <div className="absolute inset-0 bg-status-available/10 blur-[80px] rounded-full pointer-events-none transform translate-y-10" />
+            <div className="relative bg-surface rounded-2xl border border-surface-border shadow-2xl overflow-hidden transform-gpu hover:scale-[1.02] hover:-rotate-1 transition-transform duration-500">
+              
+              {/* Window Chrome */}
+              <div className="h-10 bg-background border-b border-surface-border flex items-center px-4 space-x-2">
+                <div className="w-3 h-3 rounded-full bg-error/80" />
+                <div className="w-3 h-3 rounded-full bg-status-inshop/80" />
+                <div className="w-3 h-3 rounded-full bg-status-available/80" />
+                <span className="ml-4 text-[10px] font-mono text-text-muted">transitops.io/fleet</span>
               </div>
-              <div className="p-4 space-y-4">
-                <div className="h-10 bg-surface rounded border border-surface-border" />
-                <div className="h-32 bg-surface rounded border border-surface-border flex items-center justify-center space-x-4">
-                   <div className="w-20 h-20 rounded-full border-4 border-primary/30 border-t-primary animate-spin-slow" />
-                   <div className="flex flex-col space-y-2">
-                     <div className="w-32 h-4 bg-surface-border rounded" />
-                     <div className="w-24 h-4 bg-surface-border rounded" />
-                     <div className="w-40 h-4 bg-surface-border rounded" />
-                   </div>
+              
+              {/* Fleet Registry Content */}
+              <div className="p-5">
+                {/* Search bar */}
+                <div className="bg-background rounded-lg border border-surface-border p-2.5 flex items-center mb-4">
+                  <div className="w-4 h-4 text-text-muted mr-2">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                  </div>
+                  <span className="text-[9px] text-text-muted">Search fleet by name or registration...</span>
+                </div>
+
+                {/* Vehicle Cards */}
+                <div className="space-y-3">
+                  {[
+                    { reg: 'TR-992-XD', name: 'Freightliner Cascadia', type: 'Heavy Duty', status: 'Available', statusColor: 'text-status-available bg-status-available/15', km: '42,109 km', capacity: '25,000 kg' },
+                    { reg: 'EV-441-LL', name: 'Tesla Semi Pro', type: 'Electric Van', status: 'On Trip', statusColor: 'text-status-ontrip bg-status-ontrip/15', km: '12,440 km', capacity: '36,000 kg' },
+                    { reg: 'MK-812-ZZ', name: 'Mack Anthem 2023', type: 'Long Haul', status: 'In Shop', statusColor: 'text-status-inshop bg-status-inshop/15', km: '198,321 km', capacity: '28,000 kg' },
+                    { reg: 'SC-770-AB', name: 'Scania R-Series', type: 'Heavy Duty', status: 'Available', statusColor: 'text-status-available bg-status-available/15', km: '8,102 km', capacity: '30,000 kg' },
+                  ].map((v, i) => (
+                    <div key={i} className="bg-background rounded-lg border border-surface-border p-3 flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <Truck size={14} className="text-primary" />
+                        </div>
+                        <div>
+                          <div className="flex items-center space-x-2">
+                            <span className="text-[10px] font-mono font-bold text-text-primary">{v.reg}</span>
+                            <span className="text-[9px] text-text-secondary">· {v.name}</span>
+                          </div>
+                          <div className="flex items-center space-x-2 mt-0.5">
+                            <span className="text-[8px] text-text-muted">{v.type}</span>
+                            <span className="text-[8px] text-text-muted">·</span>
+                            <span className="text-[8px] text-text-muted">{v.km}</span>
+                            <span className="text-[8px] text-text-muted">·</span>
+                            <span className="text-[8px] text-text-muted">{v.capacity}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <span className={`text-[8px] font-semibold px-2 py-1 rounded-full ${v.statusColor}`}>{v.status}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-              {/* Laptop bottom lip */}
-              <div className="absolute bottom-0 left-0 w-full h-4 bg-gradient-to-b from-[#272a31] to-[#10131a]" />
             </div>
           </motion.div>
 
@@ -268,20 +356,35 @@ const Landing = () => {
             initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
             className="lg:w-1/2"
           >
+            <span className="inline-block px-3 py-1 rounded-full border border-surface-border bg-surface/50 text-[10px] font-mono font-semibold text-status-available tracking-wider mb-4">FLEET MANAGEMENT</span>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Asset Registry</h2>
             <p className="text-lg text-text-secondary mb-8 leading-relaxed">
               Granular control over your entire vehicle ecosystem. From heavy-duty long-haulers to urban electric fleets.
             </p>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-surface border border-surface-border p-4 rounded-lg">
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="bg-surface/80 backdrop-blur-sm border border-surface-border p-5 rounded-xl">
                 <div className="text-3xl font-bold text-text-primary mb-1">4,281</div>
-                <div className="text-xs font-mono text-text-muted">ACTIVE UNITS</div>
+                <div className="text-[10px] font-mono font-semibold text-text-muted tracking-wider">ACTIVE UNITS</div>
               </div>
-              <div className="bg-surface border border-surface-border p-4 rounded-lg">
-                <div className="text-3xl font-bold text-[#81c995] mb-1">99.2%</div>
-                <div className="text-xs font-mono text-text-muted">RELIABILITY</div>
+              <div className="bg-surface/80 backdrop-blur-sm border border-surface-border p-5 rounded-xl">
+                <div className="text-3xl font-bold text-status-available mb-1">99.2%</div>
+                <div className="text-[10px] font-mono font-semibold text-text-muted tracking-wider">RELIABILITY</div>
               </div>
             </div>
+            <ul className="space-y-3">
+              <li className="flex items-center text-text-primary text-sm">
+                <div className="w-6 h-6 rounded-full bg-status-available/20 text-status-available flex items-center justify-center mr-3 flex-shrink-0">
+                  <CheckIcon />
+                </div>
+                Full lifecycle tracking from acquisition to retirement
+              </li>
+              <li className="flex items-center text-text-primary text-sm">
+                <div className="w-6 h-6 rounded-full bg-status-inshop/20 text-status-inshop flex items-center justify-center mr-3 flex-shrink-0">
+                  <CheckIcon />
+                </div>
+                Automated maintenance scheduling & alerts
+              </li>
+            </ul>
           </motion.div>
         </div>
       </section>
@@ -290,26 +393,28 @@ const Landing = () => {
       <section className="py-32 px-6">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto bg-surface border border-surface-border rounded-2xl p-12 text-center relative overflow-hidden shadow-2xl"
+          className="max-w-4xl mx-auto bg-surface/80 backdrop-blur-md border border-surface-border rounded-3xl p-12 md:p-16 text-center relative overflow-hidden shadow-2xl"
         >
           <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-50" />
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent" />
           
-          <h2 className="text-4xl font-bold mb-6 relative z-10">Command the Future</h2>
-          <p className="text-text-secondary mb-10 max-w-lg mx-auto relative z-10">
-            Join the global leaders orchestrating the next generation of logistics with the TransitOps intelligence platform.
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 relative z-10">Command the Future</h2>
+          <p className="text-text-secondary mb-10 max-w-lg mx-auto relative z-10 text-lg">
+            Join global leaders orchestrating the next generation of logistics with the TransitOps intelligence platform.
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 relative z-10">
-            <Link to="/login" className="w-full sm:w-auto px-8 py-3 bg-primary text-background font-medium rounded-lg hover:bg-primary-hover transition-colors shadow-lg shadow-primary/20">
+            <Link to="/login" className="w-full sm:w-auto px-8 py-3.5 bg-primary text-background font-semibold rounded-xl hover:bg-primary-hover transition-all duration-200 shadow-xl shadow-primary/25 text-sm flex items-center justify-center">
               Request Console Access
+              <ArrowUpRight size={16} className="ml-2" />
             </Link>
-            <Link to="/login" className="w-full sm:w-auto px-8 py-3 bg-background border border-surface-border text-text-primary font-medium rounded-lg hover:bg-surface-border transition-colors">
-              View Network Map
-            </Link>
+            <a href="#nodes" className="w-full sm:w-auto px-8 py-3.5 bg-background border border-surface-border text-text-primary font-semibold rounded-xl hover:bg-surface-border transition-all duration-200 text-sm flex items-center justify-center">
+              View Architecture
+            </a>
           </div>
           
-          <div className="mt-8 text-xs font-mono text-text-muted relative z-10">
-            READY FOR ENTERPRISE DEPLOYMENT
+          <div className="mt-10 text-[10px] font-mono font-semibold text-text-muted relative z-10 tracking-widest">
+            ENTERPRISE-GRADE · SOC 2 · ISO 27001
           </div>
         </motion.div>
       </section>
@@ -319,17 +424,16 @@ const Landing = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           
           <div className="col-span-1 md:col-span-1">
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-primary-hover flex items-center justify-center">
-                <Network className="text-background" size={14} />
+            <div className="flex items-center space-x-2.5 mb-6">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary to-primary-hover flex items-center justify-center shadow-md shadow-primary/20">
+                <Truck className="text-background" size={14} />
               </div>
-              <span className="font-bold tracking-wide">TransitOps</span>
+              <span className="font-bold tracking-tight">TransitOps</span>
             </div>
             <p className="text-sm text-text-secondary leading-relaxed mb-6">
               Advancing global commerce through deep intelligence, real-time telemetry, and automated fleet orchestration.
             </p>
             <div className="flex space-x-4 text-text-muted">
-              {/* Social icons mocked */}
               <Globe size={18} className="hover:text-primary cursor-pointer transition-colors" />
               <Network size={18} className="hover:text-primary cursor-pointer transition-colors" />
               <Lock size={18} className="hover:text-primary cursor-pointer transition-colors" />
@@ -337,7 +441,7 @@ const Landing = () => {
           </div>
 
           <div>
-            <h4 className="font-bold text-sm tracking-widest text-text-primary mb-6">PLATFORM</h4>
+            <h4 className="font-bold text-[11px] tracking-widest text-text-primary mb-6">PLATFORM</h4>
             <ul className="space-y-4 text-sm text-text-secondary">
               <li><a href="#" className="hover:text-primary transition-colors">Command Console</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Neural Registry</a></li>
@@ -347,17 +451,17 @@ const Landing = () => {
           </div>
 
           <div>
-            <h4 className="font-bold text-sm tracking-widest text-text-primary mb-6">INTELLIGENCE</h4>
+            <h4 className="font-bold text-[11px] tracking-widest text-text-primary mb-6">INTELLIGENCE</h4>
             <ul className="space-y-4 text-sm text-text-secondary">
-              <li><a href="#" className="hover:text-primary transition-colors">Quantum Routing</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Predictive Hub</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Predictive Routing</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Health Analytics</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Safety Protocols</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Global Status</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold text-sm tracking-widest text-text-primary mb-6">CORPORATE</h4>
+            <h4 className="font-bold text-[11px] tracking-widest text-text-primary mb-6">CORPORATE</h4>
             <ul className="space-y-4 text-sm text-text-secondary">
               <li><a href="#" className="hover:text-primary transition-colors">Security Policy</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Legal Documentation</a></li>
@@ -368,11 +472,11 @@ const Landing = () => {
         </div>
         
         <div className="max-w-7xl mx-auto border-t border-surface-border pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-text-muted">
-          <p>© 2024 TransitOps Intelligence Systems. Secure Channel J-9.</p>
+          <p>© 2024 TransitOps Intelligence Systems. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-text-primary">System Access</a>
-            <a href="#" className="hover:text-text-primary">Compliance</a>
-            <a href="#" className="hover:text-text-primary">Registry</a>
+            <a href="#" className="hover:text-text-primary transition-colors">Privacy</a>
+            <a href="#" className="hover:text-text-primary transition-colors">Terms</a>
+            <a href="#" className="hover:text-text-primary transition-colors">Status</a>
           </div>
         </div>
       </footer>
