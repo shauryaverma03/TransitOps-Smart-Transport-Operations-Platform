@@ -25,7 +25,7 @@ const Layout = () => {
   };
 
   const navItems = [
-    { name: 'Dashboard', path: '/', icon: <LayoutDashboard size={20} />, roles: ['Fleet Manager', 'Dispatcher', 'Safety Officer', 'Financial Analyst'] },
+    { name: 'Dashboard', path: '/dashboard', icon: <LayoutDashboard size={20} />, roles: ['Fleet Manager', 'Dispatcher', 'Safety Officer', 'Financial Analyst'] },
     { name: 'Fleet', path: '/fleet', icon: <Truck size={20} />, roles: ['Fleet Manager', 'Dispatcher'] },
     { name: 'Drivers', path: '/drivers', icon: <Users size={20} />, roles: ['Fleet Manager', 'Dispatcher', 'Safety Officer'] },
     { name: 'Trips', path: '/trips', icon: <Map size={20} />, roles: ['Fleet Manager', 'Dispatcher'] },
