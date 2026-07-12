@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const connectDB = require('./config/db');
 
 const app = express();
@@ -8,7 +10,20 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-// Middleware
+// Security Middlewares
+app.use(helmet()); // Sets various HTTP headers for security
+
+// Rate Limiting to prevent brute force attacks
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 200, // Limit each IP to 200 requests per windowMs
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: 'Too many requests from this IP, please try again after 15 minutes' }
+});
+app.use('/api', limiter);
+
+// Standard Middlewares
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true
