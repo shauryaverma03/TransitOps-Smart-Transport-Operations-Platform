@@ -71,16 +71,16 @@ depotName, currency: enum[USD, EUR, GBP], distanceUnit: enum[km, mi], updatedAt
 ```
 
 ## Business Rules Implemented (Checklist)
-- [ ] Vehicle registration number must be unique
-- [ ] Retired or In Shop vehicles never appear in dispatch selection dropdown
-- [ ] Drivers with expired licenses OR Suspended status cannot be assigned to trips
-- [ ] A vehicle or driver already On Trip cannot be assigned to another trip
-- [ ] Cargo weight must not exceed vehicle's max load capacity
-- [ ] Dispatching a trip auto-changes vehicle AND driver status to On Trip
-- [ ] Completing a trip (via cascade) auto-reverts vehicle AND driver to Available
-- [ ] Cancelling a dispatched trip restores vehicle and driver to Available
-- [ ] Creating an active maintenance record auto-sets vehicle status to In Shop
-- [ ] Closing maintenance restores vehicle to Available (unless Retired)
+- [x] Vehicle registration number must be unique
+- [x] Retired or In Shop vehicles never appear in dispatch selection dropdown
+- [x] Drivers with expired licenses OR Suspended status cannot be assigned to trips
+- [x] A vehicle or driver already On Trip cannot be assigned to another trip
+- [x] Cargo weight must not exceed vehicle's max load capacity
+- [x] Dispatching a trip auto-changes vehicle AND driver status to On Trip
+- [x] Completing a trip (via cascade) auto-reverts vehicle AND driver to Available
+- [x] Cancelling a dispatched trip restores vehicle and driver to Available
+- [x] Creating an active maintenance record auto-sets vehicle status to In Shop
+- [x] Closing maintenance restores vehicle to Available (unless Retired)
 
 ## Build Progress Log
 

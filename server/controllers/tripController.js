@@ -216,9 +216,9 @@ const completeTripStep3 = async (req, res) => {
 
     // Revert driver to Available + increment trip completion rate
     const driver = await Driver.findById(trip.driver._id);
-    const totalTrips = await Trip.countDocuments({ driver: driver._id, status: 'Completed' }) + 1;
-    const completedTrips = totalTrips;
-    const completionRate = Math.round((completedTrips / totalTrips) * 100);
+    const completedCount = await Trip.countDocuments({ driver: driver._id, status: 'Completed' }) + 1;
+    const totalAssignedCount = await Trip.countDocuments({ driver: driver._id });
+    const completionRate = totalAssignedCount > 0 ? Math.round((completedCount / totalAssignedCount) * 100) : 0;
 
     await Driver.findByIdAndUpdate(trip.driver._id, {
       status: 'Available',

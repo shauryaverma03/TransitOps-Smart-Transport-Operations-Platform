@@ -155,6 +155,12 @@ const Trips = () => {
     );
   };
 
+  const selectedVehicle = vehicles.find(v => v._id === createData.vehicle);
+  const capacityExcess = selectedVehicle && createData.cargoWeight 
+    ? Number(createData.cargoWeight) - selectedVehicle.maxLoadCapacity 
+    : 0;
+  const isOverCapacity = capacityExcess > 0;
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -319,6 +325,11 @@ const Trips = () => {
             </div>
           </div>
           
+          {isOverCapacity && (
+            <div className="text-error text-sm p-2 bg-error/10 rounded border border-error/20 flex items-center mt-2">
+              <AlertTriangle size={16} className="mr-2" /> Capacity exceeded by {capacityExcess} kg — dispatch blocked. Vehicle max: {selectedVehicle.maxLoadCapacity} kg, Cargo: {createData.cargoWeight} kg
+            </div>
+          )}
           {createError && (
             <div className="text-error text-sm p-2 bg-error/10 rounded border border-error/20 flex items-center">
               <AlertTriangle size={16} className="mr-2" /> {createError}
@@ -327,7 +338,7 @@ const Trips = () => {
           
           <div className="pt-4 flex justify-end gap-3">
             <button type="button" onClick={() => setIsCreateOpen(false)} className="px-4 py-2 text-text-secondary hover:text-text-primary">Cancel</button>
-            <button type="submit" className="px-4 py-2 bg-primary text-background rounded-md hover:bg-primary-hover font-medium">Create Trip</button>
+            <button type="submit" disabled={isOverCapacity} className="px-4 py-2 bg-primary text-background rounded-md hover:bg-primary-hover font-medium disabled:opacity-50 disabled:cursor-not-allowed">Create Trip</button>
           </div>
         </form>
       </Modal>
