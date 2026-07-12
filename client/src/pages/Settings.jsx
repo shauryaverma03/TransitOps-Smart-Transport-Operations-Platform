@@ -43,9 +43,12 @@ const Settings = () => {
 
   return (
     <div className="max-w-2xl">
-      <h2 className="text-2xl font-bold text-text-primary mb-6">System Settings</h2>
+      <div>
+        <h2 className="text-2xl font-bold text-text-primary">System Settings</h2>
+        <p className="text-sm text-text-muted mt-1">Configure depot, currency & display preferences</p>
+      </div>
       
-      <div className="bg-surface border border-surface-border rounded-lg p-6">
+      <div className="glass-card p-6 mt-6">
         <form onSubmit={handleSubmit} className="space-y-6">
           
           <div>
@@ -105,7 +108,7 @@ const Settings = () => {
         </form>
       </div>
 
-      <div className="mt-8 bg-surface border border-surface-border rounded-lg p-6">
+      <div className="mt-8 glass-card p-6">
          <h3 className="text-lg font-medium text-text-primary mb-4 border-b border-surface-border pb-2">RBAC Matrix Reference</h3>
          <p className="text-sm text-text-secondary mb-4">Roles are enforced strictly at the API layer via JWT decoding.</p>
          <div className="overflow-x-auto">

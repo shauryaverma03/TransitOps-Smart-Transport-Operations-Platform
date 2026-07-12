@@ -144,12 +144,12 @@ const Trips = () => {
   const getStatusBadge = (status) => {
     const styles = {
       'Draft': 'bg-surface-border text-text-secondary border-surface-border',
-      'Dispatched': 'bg-status-ontrip/20 text-status-ontrip border-status-ontrip/30',
-      'Completed': 'bg-status-available/20 text-status-available border-status-available/30',
-      'Cancelled': 'bg-status-retired/20 text-status-retired border-status-retired/30',
+      'Dispatched': 'bg-status-ontrip/15 text-status-ontrip border-status-ontrip/20 badge-glow-blue',
+      'Completed': 'bg-status-available/15 text-status-available border-status-available/20 badge-glow-green',
+      'Cancelled': 'bg-status-retired/15 text-status-retired border-status-retired/20 badge-glow-red',
     };
     return (
-      <span className={`px-2 py-1 text-xs font-medium border rounded-full ${styles[status]}`}>
+      <span className={`px-2.5 py-1 text-xs font-semibold border rounded-full ${styles[status]}`}>
         {status}
       </span>
     );
@@ -158,16 +158,19 @@ const Trips = () => {
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h2 className="text-2xl font-bold text-text-primary">Trip Management</h2>
+        <div>
+          <h2 className="text-2xl font-bold text-text-primary">Trip Management</h2>
+          <p className="text-sm text-text-muted mt-1">Create, dispatch, and complete freight operations</p>
+        </div>
         {canManage && (
           <button
             onClick={() => {
               setCreateData({ vehicle: '', driver: '', source: '', destination: '', cargoWeight: '', plannedDistance: '', revenue: '' });
               setIsCreateOpen(true);
             }}
-            className="flex items-center px-4 py-2 bg-primary text-background rounded-md hover:bg-primary-hover font-medium transition-colors"
+            className="flex items-center px-4 py-2.5 bg-primary text-background rounded-lg hover:bg-primary-hover font-semibold transition-all duration-200 shadow-lg shadow-primary/20 text-sm"
           >
-            <Plus size={18} className="mr-2" />
+            <Plus size={16} className="mr-2" />
             Create Trip
           </button>
         )}
@@ -184,27 +187,27 @@ const Trips = () => {
         />
       </div>
 
-      <div className="bg-surface border border-surface-border rounded-lg overflow-hidden">
+      <div className="glass-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm whitespace-nowrap">
-            <thead className="bg-surface-border/50 text-text-secondary border-b border-surface-border">
+            <thead className="bg-background/50 text-text-muted border-b border-surface-border">
               <tr>
-                <th className="px-6 py-4 font-medium">Trip ID</th>
-                <th className="px-6 py-4 font-medium">Route</th>
-                <th className="px-6 py-4 font-medium">Vehicle / Driver</th>
-                <th className="px-6 py-4 font-medium">Load / Dist.</th>
-                <th className="px-6 py-4 font-medium">Status</th>
-                {canManage && <th className="px-6 py-4 font-medium text-right">Actions</th>}
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Trip ID</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Route</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Vehicle / Driver</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Load / Dist.</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Status</th>
+                {canManage && <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider text-right">Actions</th>}
               </tr>
             </thead>
-            <tbody className="divide-y divide-surface-border text-text-primary">
+            <tbody className="divide-y divide-surface-border/50 text-text-primary">
               {loading ? (
                 <tr><td colSpan={6} className="px-6 py-8 text-center text-text-muted">Loading trips...</td></tr>
               ) : trips.length === 0 ? (
                 <tr><td colSpan={6} className="px-6 py-8 text-center text-text-muted">No trips found.</td></tr>
               ) : (
                 trips.map((t) => (
-                  <tr key={t._id} className="hover:bg-surface-border/20 transition-colors">
+                  <tr key={t._id} className="table-row-hover">
                     <td className="px-6 py-4 font-mono font-medium">{t.tripId}</td>
                     <td className="px-6 py-4">
                       <div className="flex items-center">

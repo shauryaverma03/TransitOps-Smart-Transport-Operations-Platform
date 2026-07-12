@@ -103,13 +103,13 @@ const Fleet = () => {
 
   const getStatusBadge = (status) => {
     const styles = {
-      'Available': 'bg-status-available/20 text-status-available border-status-available/30',
-      'On Trip': 'bg-status-ontrip/20 text-status-ontrip border-status-ontrip/30',
-      'In Shop': 'bg-status-inshop/20 text-status-inshop border-status-inshop/30',
-      'Retired': 'bg-status-retired/20 text-status-retired border-status-retired/30',
+      'Available': 'bg-status-available/15 text-status-available border-status-available/20 badge-glow-green',
+      'On Trip': 'bg-status-ontrip/15 text-status-ontrip border-status-ontrip/20 badge-glow-blue',
+      'In Shop': 'bg-status-inshop/15 text-status-inshop border-status-inshop/20 badge-glow-orange',
+      'Retired': 'bg-status-retired/15 text-status-retired border-status-retired/20 badge-glow-red',
     };
     return (
-      <span className={`px-2 py-1 text-xs font-medium border rounded-full ${styles[status] || 'bg-gray-500/20 text-gray-400'}`}>
+      <span className={`px-2.5 py-1 text-xs font-semibold border rounded-full ${styles[status] || 'bg-gray-500/20 text-gray-400'}`}>
         {status}
       </span>
     );
@@ -118,13 +118,16 @@ const Fleet = () => {
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h2 className="text-2xl font-bold text-text-primary">Fleet Registry</h2>
+        <div>
+          <h2 className="text-2xl font-bold text-text-primary">Fleet Registry</h2>
+          <p className="text-sm text-text-muted mt-1">Manage and monitor your vehicle fleet</p>
+        </div>
         {isManager && (
           <button
             onClick={() => handleOpenModal()}
-            className="flex items-center px-4 py-2 bg-primary text-background rounded-md hover:bg-primary-hover font-medium transition-colors"
+            className="flex items-center px-4 py-2.5 bg-primary text-background rounded-lg hover:bg-primary-hover font-semibold transition-all duration-200 shadow-lg shadow-primary/20 text-sm"
           >
-            <Plus size={18} className="mr-2" />
+            <Plus size={16} className="mr-2" />
             Add Vehicle
           </button>
         )}
@@ -157,21 +160,21 @@ const Fleet = () => {
         </div>
       </div>
 
-      <div className="bg-surface border border-surface-border rounded-lg overflow-hidden">
+      <div className="glass-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm whitespace-nowrap">
-            <thead className="bg-surface-border/50 text-text-secondary border-b border-surface-border">
+            <thead className="bg-background/50 text-text-muted border-b border-surface-border">
               <tr>
-                <th className="px-6 py-4 font-medium">Registration</th>
-                <th className="px-6 py-4 font-medium">Name</th>
-                <th className="px-6 py-4 font-medium">Type</th>
-                <th className="px-6 py-4 font-medium">Capacity (kg)</th>
-                <th className="px-6 py-4 font-medium">Odometer (km)</th>
-                <th className="px-6 py-4 font-medium">Status</th>
-                {isManager && <th className="px-6 py-4 font-medium text-right">Actions</th>}
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Registration</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Name</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Type</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Capacity (kg)</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Odometer (km)</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Status</th>
+                {isManager && <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider text-right">Actions</th>}
               </tr>
             </thead>
-            <tbody className="divide-y divide-surface-border text-text-primary">
+            <tbody className="divide-y divide-surface-border/50 text-text-primary">
               {loading ? (
                 <tr>
                   <td colSpan={7} className="px-6 py-8 text-center text-text-muted">Loading fleet data...</td>
@@ -182,7 +185,7 @@ const Fleet = () => {
                 </tr>
               ) : (
                 vehicles.map((v) => (
-                  <tr key={v._id} className="hover:bg-surface-border/20 transition-colors">
+                  <tr key={v._id} className="table-row-hover">
                     <td className="px-6 py-4 font-medium">{v.registrationNumber}</td>
                     <td className="px-6 py-4">{v.name}</td>
                     <td className="px-6 py-4 text-text-secondary">{v.type}</td>

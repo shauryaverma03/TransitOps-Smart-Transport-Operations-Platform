@@ -32,7 +32,10 @@ const Finance = () => {
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h2 className="text-2xl font-bold text-text-primary">Finance & Accounting</h2>
+        <div>
+          <h2 className="text-2xl font-bold text-text-primary">Finance & Accounting</h2>
+          <p className="text-sm text-text-muted mt-1">Fuel consumption, tolls & operational expenses</p>
+        </div>
       </div>
 
       <div className="flex space-x-1 border-b border-surface-border">
@@ -60,27 +63,27 @@ const Finance = () => {
         </button>
       </div>
 
-      <div className="bg-surface border border-surface-border rounded-lg overflow-hidden">
+      <div className="glass-card overflow-hidden">
         <div className="overflow-x-auto">
           {activeTab === 'fuel' ? (
             <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-surface-border/50 text-text-secondary border-b border-surface-border">
+            <thead className="bg-background/50 text-text-muted border-b border-surface-border">
                 <tr>
-                  <th className="px-6 py-4 font-medium">Date</th>
-                  <th className="px-6 py-4 font-medium">Vehicle</th>
-                  <th className="px-6 py-4 font-medium">Trip Ref</th>
-                  <th className="px-6 py-4 font-medium">Liters</th>
-                  <th className="px-6 py-4 font-medium">Cost ($)</th>
+                  <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Date</th>
+                  <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Vehicle</th>
+                  <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Trip Ref</th>
+                  <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Liters</th>
+                  <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Cost ($)</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-surface-border text-text-primary">
+              <tbody className="divide-y divide-surface-border/50 text-text-primary">
                 {loading ? (
                   <tr><td colSpan={5} className="px-6 py-8 text-center text-text-muted">Loading...</td></tr>
                 ) : fuelLogs.length === 0 ? (
                   <tr><td colSpan={5} className="px-6 py-8 text-center text-text-muted">No fuel logs found.</td></tr>
                 ) : (
                   fuelLogs.map((log) => (
-                    <tr key={log._id} className="hover:bg-surface-border/20 transition-colors">
+                    <tr key={log._id} className="table-row-hover">
                       <td className="px-6 py-4 font-medium">{format(new Date(log.date), 'MMM dd, yyyy')}</td>
                       <td className="px-6 py-4">{log.vehicle?.registrationNumber || 'Unknown'}</td>
                       <td className="px-6 py-4 font-mono text-text-secondary">{log.trip?.tripId || '-'}</td>
@@ -93,25 +96,25 @@ const Finance = () => {
             </table>
           ) : (
             <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-surface-border/50 text-text-secondary border-b border-surface-border">
+              <thead className="bg-background/50 text-text-muted border-b border-surface-border">
                 <tr>
-                  <th className="px-6 py-4 font-medium">Date</th>
-                  <th className="px-6 py-4 font-medium">Trip Ref</th>
-                  <th className="px-6 py-4 font-medium">Vehicle</th>
-                  <th className="px-6 py-4 font-medium">Tolls ($)</th>
-                  <th className="px-6 py-4 font-medium">Maintenance ($)</th>
-                  <th className="px-6 py-4 font-medium">Other ($)</th>
-                  <th className="px-6 py-4 font-medium text-right">Total ($)</th>
+                  <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Date</th>
+                  <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Trip Ref</th>
+                  <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Vehicle</th>
+                  <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Tolls ($)</th>
+                  <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Maintenance ($)</th>
+                  <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Other ($)</th>
+                  <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider text-right">Total ($)</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-surface-border text-text-primary">
+              <tbody className="divide-y divide-surface-border/50 text-text-primary">
                 {loading ? (
                   <tr><td colSpan={7} className="px-6 py-8 text-center text-text-muted">Loading...</td></tr>
                 ) : expenses.length === 0 ? (
                   <tr><td colSpan={7} className="px-6 py-8 text-center text-text-muted">No expenses found.</td></tr>
                 ) : (
                   expenses.map((exp) => (
-                    <tr key={exp._id} className="hover:bg-surface-border/20 transition-colors">
+                    <tr key={exp._id} className="table-row-hover">
                       <td className="px-6 py-4 font-medium">{format(new Date(exp.createdAt), 'MMM dd, yyyy')}</td>
                       <td className="px-6 py-4 font-mono">{exp.trip?.tripId || 'Unknown'}</td>
                       <td className="px-6 py-4 text-text-secondary">{exp.vehicle?.registrationNumber || 'Unknown'}</td>

@@ -93,43 +93,46 @@ const Maintenance = () => {
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h2 className="text-2xl font-bold text-text-primary">Maintenance Log</h2>
+        <div>
+          <h2 className="text-2xl font-bold text-text-primary">Maintenance Log</h2>
+          <p className="text-sm text-text-muted mt-1">Service records, repairs & issue tracking</p>
+        </div>
         {isManager && (
           <button
             onClick={() => {
               setFormData({ vehicle: '', serviceType: '', cost: '', date: new Date().toISOString().split('T')[0], notes: '' });
               setIsModalOpen(true);
             }}
-            className="flex items-center px-4 py-2 bg-primary text-background rounded-md hover:bg-primary-hover font-medium transition-colors"
+            className="flex items-center px-4 py-2.5 bg-primary text-background rounded-lg hover:bg-primary-hover font-semibold transition-all duration-200 shadow-lg shadow-primary/20 text-sm"
           >
-            <Plus size={18} className="mr-2" />
+            <Plus size={16} className="mr-2" />
             Report Issue
           </button>
         )}
       </div>
 
-      <div className="bg-surface border border-surface-border rounded-lg overflow-hidden">
+      <div className="glass-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm whitespace-nowrap">
-            <thead className="bg-surface-border/50 text-text-secondary border-b border-surface-border">
+            <thead className="bg-background/50 text-text-muted border-b border-surface-border">
               <tr>
-                <th className="px-6 py-4 font-medium">Date</th>
-                <th className="px-6 py-4 font-medium">Vehicle</th>
-                <th className="px-6 py-4 font-medium">Service Type</th>
-                <th className="px-6 py-4 font-medium">Cost ($)</th>
-                <th className="px-6 py-4 font-medium">Notes</th>
-                <th className="px-6 py-4 font-medium">Status</th>
-                {isManager && <th className="px-6 py-4 font-medium text-right">Actions</th>}
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Date</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Vehicle</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Service Type</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Cost ($)</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Notes</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Status</th>
+                {isManager && <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider text-right">Actions</th>}
               </tr>
             </thead>
-            <tbody className="divide-y divide-surface-border text-text-primary">
+            <tbody className="divide-y divide-surface-border/50 text-text-primary">
               {loading ? (
                 <tr><td colSpan={7} className="px-6 py-8 text-center text-text-muted">Loading maintenance data...</td></tr>
               ) : logs.length === 0 ? (
                 <tr><td colSpan={7} className="px-6 py-8 text-center text-text-muted">No maintenance logs found.</td></tr>
               ) : (
                 logs.map((log) => (
-                  <tr key={log._id} className="hover:bg-surface-border/20 transition-colors">
+                  <tr key={log._id} className="table-row-hover">
                     <td className="px-6 py-4 font-medium">{format(new Date(log.date), 'MMM dd, yyyy')}</td>
                     <td className="px-6 py-4">{log.vehicle?.registrationNumber || 'Unknown'}</td>
                     <td className="px-6 py-4 text-text-secondary">{log.serviceType}</td>

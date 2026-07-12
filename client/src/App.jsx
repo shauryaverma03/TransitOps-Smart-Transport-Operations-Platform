@@ -14,11 +14,18 @@ import Dashboard from './pages/Dashboard';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
 import Landing from './pages/Landing';
+import { ShieldAlert } from 'lucide-react';
 
 const Unauthorized = () => (
-  <div className="flex flex-col items-center justify-center h-full text-text-primary">
-    <h2 className="text-3xl font-bold text-error mb-2">403</h2>
-    <p>You don't have permission to view this page.</p>
+  <div className="flex flex-col items-center justify-center h-full text-text-primary animate-fade-in">
+    <div className="w-16 h-16 rounded-2xl bg-error/10 flex items-center justify-center mb-4">
+      <ShieldAlert size={32} className="text-error" />
+    </div>
+    <h2 className="text-4xl font-extrabold text-error mb-2">403</h2>
+    <p className="text-text-secondary mb-6">You don't have permission to access this page.</p>
+    <a href="/dashboard" className="text-sm font-semibold text-primary hover:text-primary-hover transition-colors">
+      ← Back to Dashboard
+    </a>
   </div>
 );
 

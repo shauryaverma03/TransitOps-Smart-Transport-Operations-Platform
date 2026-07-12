@@ -78,19 +78,22 @@ const Analytics = () => {
   return (
     <div className="space-y-6 pb-10">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h2 className="text-2xl font-bold text-text-primary">Analytics & ROI</h2>
+        <div>
+          <h2 className="text-2xl font-bold text-text-primary">Analytics & ROI</h2>
+          <p className="text-sm text-text-muted mt-1">Revenue trends, cost analysis & fleet performance</p>
+        </div>
         <button
           onClick={handleExportCSV}
-          className="flex items-center px-4 py-2 bg-surface text-primary border border-surface-border rounded-md hover:bg-surface-border font-medium transition-colors"
+          className="flex items-center px-4 py-2.5 bg-surface/80 text-primary border border-surface-border rounded-lg hover:bg-surface-border font-semibold transition-all duration-200 text-sm"
         >
-          <Download size={18} className="mr-2" />
-          Export Data (CSV)
+          <Download size={16} className="mr-2" />
+          Export CSV
         </button>
       </div>
 
       {/* Summary Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-surface border border-surface-border p-5 rounded-lg">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 stagger-children">
+        <div className="glass-card hover-glow p-5">
           <h4 className="text-sm font-medium text-text-secondary mb-2">Overall ROI</h4>
           <div className="flex items-baseline">
             <span className={`text-3xl font-bold ${summary.overallROI >= 0 ? 'text-status-available' : 'text-error'}`}>
@@ -98,15 +101,15 @@ const Analytics = () => {
             </span>
           </div>
         </div>
-        <div className="bg-surface border border-surface-border p-5 rounded-lg">
+        <div className="glass-card hover-glow p-5">
           <h4 className="text-sm font-medium text-text-secondary mb-2">Total Revenue</h4>
           <div className="text-3xl font-bold text-text-primary">${summary.totalRevenue.toLocaleString()}</div>
         </div>
-        <div className="bg-surface border border-surface-border p-5 rounded-lg">
+        <div className="glass-card hover-glow p-5">
           <h4 className="text-sm font-medium text-text-secondary mb-2">Operational Cost</h4>
           <div className="text-3xl font-bold text-error">${summary.totalOperationalCost.toLocaleString()}</div>
         </div>
-        <div className="bg-surface border border-surface-border p-5 rounded-lg">
+        <div className="glass-card hover-glow p-5">
           <h4 className="text-sm font-medium text-text-secondary mb-2">Fleet Fuel Eff.</h4>
           <div className="text-3xl font-bold text-primary">
             {summary.fuelEfficiency} <span className="text-lg text-text-muted font-normal">{summary.fuelEfficiencyUnit}</span>
@@ -116,8 +119,8 @@ const Analytics = () => {
 
       {/* Charts Row 1 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-surface border border-surface-border rounded-lg p-6">
-          <h3 className="text-lg font-medium text-text-primary mb-6">Monthly Revenue Trend</h3>
+        <div className="glass-card p-6">
+          <h3 className="text-base font-semibold text-text-primary mb-6">Monthly Revenue Trend</h3>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={monthlyRevenue}>
@@ -131,8 +134,8 @@ const Analytics = () => {
           </div>
         </div>
 
-        <div className="bg-surface border border-surface-border rounded-lg p-6">
-          <h3 className="text-lg font-medium text-text-primary mb-6">Top Costliest Vehicles</h3>
+        <div className="glass-card p-6">
+          <h3 className="text-base font-semibold text-text-primary mb-6">Top Costliest Vehicles</h3>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={topCostlyVehicles} layout="vertical" margin={{ left: 30 }}>
@@ -149,26 +152,26 @@ const Analytics = () => {
       </div>
 
       {/* ROI Table */}
-      <div className="bg-surface border border-surface-border rounded-lg overflow-hidden mt-6">
+      <div className="glass-card overflow-hidden mt-6">
         <div className="px-6 py-4 border-b border-surface-border flex justify-between items-center">
-          <h3 className="text-lg font-medium text-text-primary">Vehicle ROI Analysis</h3>
+          <h3 className="text-base font-semibold text-text-primary">Vehicle ROI Analysis</h3>
         </div>
         <div className="overflow-x-auto max-h-96">
           <table className="w-full text-left text-sm whitespace-nowrap">
-            <thead className="bg-surface-border/50 text-text-secondary border-b border-surface-border sticky top-0 backdrop-blur-md">
+            <thead className="bg-background/50 text-text-muted border-b border-surface-border sticky top-0 backdrop-blur-md">
               <tr>
-                <th className="px-6 py-3 font-medium">Vehicle Reg</th>
-                <th className="px-6 py-3 font-medium">Model</th>
-                <th className="px-6 py-3 font-medium text-right">Acquisition ($)</th>
-                <th className="px-6 py-3 font-medium text-right">Revenue ($)</th>
-                <th className="px-6 py-3 font-medium text-right">Maint. Cost ($)</th>
-                <th className="px-6 py-3 font-medium text-right">Fuel Cost ($)</th>
-                <th className="px-6 py-3 font-medium text-right">ROI (%)</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Vehicle Reg</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider">Model</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider text-right">Acquisition ($)</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider text-right">Revenue ($)</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider text-right">Maint. Cost ($)</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider text-right">Fuel Cost ($)</th>
+                <th className="px-6 py-3 font-semibold text-xs uppercase tracking-wider text-right">ROI (%)</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-surface-border text-text-primary">
+            <tbody className="divide-y divide-surface-border/50 text-text-primary">
               {vehicleROI.sort((a,b) => b.roi - a.roi).map((v) => (
-                <tr key={v.vehicle._id} className="hover:bg-surface-border/20 transition-colors">
+                <tr key={v.vehicle._id} className="table-row-hover">
                   <td className="px-6 py-3 font-medium">{v.vehicle.registrationNumber}</td>
                   <td className="px-6 py-3 text-text-secondary">{v.vehicle.name}</td>
                   <td className="px-6 py-3 text-right">{v.vehicle.acquisitionCost.toLocaleString()}</td>
