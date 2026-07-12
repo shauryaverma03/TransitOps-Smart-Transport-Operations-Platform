@@ -13,6 +13,8 @@ import Finance from './pages/Finance';
 import Dashboard from './pages/Dashboard';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
+import Landing from './pages/Landing';
+
 const Unauthorized = () => (
   <div className="flex flex-col items-center justify-center h-full text-text-primary">
     <h2 className="text-3xl font-bold text-error mb-2">403</h2>
@@ -25,12 +27,13 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
           
           <Route element={<ProtectedRoute />}>
             <Route element={<Layout />}>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               
               <Route element={<ProtectedRoute allowedRoles={['Fleet Manager', 'Dispatcher']} />}>
                 <Route path="/fleet" element={<Fleet />} />
